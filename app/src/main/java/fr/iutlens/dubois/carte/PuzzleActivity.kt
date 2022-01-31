@@ -76,6 +76,16 @@ class PuzzleActivity : AppCompatActivity() {
         for(sprite in list.list){
             val basic = sprite as BasicSprite
             Log.d("check", "${basic.ndx}:(${basic.x},${basic.y})")
+
+            var erreur = 0f
+            val dxT = basic.x - basic.ndx % 5 - 0.5f
+            val dyT = basic.y - basic.ndx / 4 - 0.5f
+
+            erreur += dxT * dxT + dyT * dyT
+            Log.d("erreur actuelle", "${erreur}")
+
+            val note = 20 - 5 * erreur
+            Log.d("note actuelle", "${note}")
         }
     }
 }
