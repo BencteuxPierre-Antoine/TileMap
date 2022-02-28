@@ -2,7 +2,6 @@ package fr.iutlens.dubois.carte
 
 import android.graphics.Matrix
 import android.os.Bundle
-import android.util.Log
 import android.view.MotionEvent
 import androidx.appcompat.app.AppCompatActivity
 import fr.iutlens.dubois.carte.sprite.BasicSprite
@@ -64,34 +63,10 @@ class PuzzleActivity : AppCompatActivity() {
                 } ?: false
             }
             MotionEvent.ACTION_UP -> {  // On déselectionne
-                check(list)
                 list.target = null
                 true
             }
             else -> false
         }
-    }
-
-    fun check(list: SpriteList) {
-        var moyennePuzzle = 0f
-
-        for(sprite in list.list){
-            val basic = sprite as BasicSprite
-            //Log.d("check", "${basic.ndx}:(${basic.x},${basic.y})")
-
-            var erreurPuzzle = 0f
-            val dxT = basic.x - basic.ndx % 5 - 0.5f
-            val dyT = basic.y - basic.ndx / 4 - 0.5f
-
-            erreurPuzzle += dxT * dxT + dyT * dyT
-            //Log.d("erreur pièce actuelle", "$erreur")
-
-            val notePuzzle = 20 - 2 * erreurPuzzle
-            //Log.d("note pièce actuelle", "$note")
-
-            moyennePuzzle += notePuzzle
-        }
-        moyennePuzzle /= 20
-        //Log.d("moyenne puzzle", "$moyenne")
     }
 }
