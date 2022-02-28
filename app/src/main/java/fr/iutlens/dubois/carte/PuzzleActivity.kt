@@ -72,20 +72,26 @@ class PuzzleActivity : AppCompatActivity() {
         }
     }
 
-    private fun check(list: SpriteList) {
+    fun check(list: SpriteList) {
+        var moyennePuzzle = 0f
+
         for(sprite in list.list){
             val basic = sprite as BasicSprite
-            Log.d("check", "${basic.ndx}:(${basic.x},${basic.y})")
+            //Log.d("check", "${basic.ndx}:(${basic.x},${basic.y})")
 
-            var erreur = 0f
+            var erreurPuzzle = 0f
             val dxT = basic.x - basic.ndx % 5 - 0.5f
             val dyT = basic.y - basic.ndx / 4 - 0.5f
 
-            erreur += dxT * dxT + dyT * dyT
-            Log.d("erreur actuelle", "${erreur}")
+            erreurPuzzle += dxT * dxT + dyT * dyT
+            //Log.d("erreur pièce actuelle", "$erreur")
 
-            val note = 20 - 5 * erreur
-            Log.d("note actuelle", "${note}")
+            val notePuzzle = 20 - 2 * erreurPuzzle
+            //Log.d("note pièce actuelle", "$note")
+
+            moyennePuzzle += notePuzzle
         }
+        moyennePuzzle /= 20
+        //Log.d("moyenne puzzle", "$moyenne")
     }
 }
